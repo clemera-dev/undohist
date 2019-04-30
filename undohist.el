@@ -192,6 +192,7 @@ To use undohist, you just call this function."
     (when (and (undohist-recover-file-p file)
                (file-exists-p undo-file)
                (or (null buffer-undo-list)
+                   (eq this-command 'revert-buffer)
                    (yes-or-no-p "buffer-undo-list is not empty. Do you want to recover now? ")))
       (with-temp-buffer
         (insert-file-contents undo-file)
